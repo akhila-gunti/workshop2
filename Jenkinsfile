@@ -10,18 +10,28 @@ def getFtpPublishProfile(def publishProfilesJson) {
   return null
 }
 
-node {
-  withEnv(['AZURE_SUBSCRIPTION_ID=b18faa87-0714-43b3-bb71-b49bff521fbb',
-           'AZURE_TENANT_ID=59bdeeee-d88d-49ad-a8c4-94c771cfb354']) {
+pipeline {
+  agent any
+     
+  environment {
+  (['AZURE_SUBSCRIPTION_ID=b18faa87-0714-43b3-bb71-b49bff521fbb',
+           'AZURE_TENANT_ID=59bdeeee-d88d-49ad-a8c4-94c771cfb354']) }
+ stages{
     stage('init') {
+     step{
       checkout scm
+     }
     }
+ }
 
     stage('build') {
+     step{
       sh 'mvn clean package'
+    }
     }
 
     stage('deploy') {
+     step{
       def resourceGroup = 'akgroup'
       def webAppName = 'workshopak'
       // Login to Azure
@@ -43,5 +53,7 @@ node {
       // Log out
       sh 'az logout'
     }
+    }
   }
+}
 }
