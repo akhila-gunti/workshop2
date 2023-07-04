@@ -31,8 +31,8 @@ pipeline {
     stage('deploy') {
       steps {
         script {
-          def resourceGroup = '<firstwebapp2899_group>'
-          def webAppName = '<nikhithaapp>'
+          def resourceGroup = '<akgroup>'
+          def webAppName = '<workshopak>'
           
           // login Azure
 withCredentials([azureServicePrincipal('ak')]) {
