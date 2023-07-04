@@ -35,7 +35,7 @@ pipeline {
           def webAppName = '<nikhithaapp>'
           
           // login Azure
-withCredentials([azureServicePrincipal('Azure1')]) {
+withCredentials([azureServicePrincipal('ak')]) {
     sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
 }
           
